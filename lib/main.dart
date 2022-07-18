@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        builder: (_) => LoginBlocBloc(
+        create: (_) => LoginBlocBloc(
           logic: SimpleLoginLogic(),
         ),
         child: MyHomePage(title: 'Flutter Demo Home Page'),
@@ -69,9 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
               _showError(context, state.message);
             }
             if (state is LoggedInBlocState) {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (BuildContext context) => MainPage())
-              );
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => MainPage()));
             }
           },
           child: BlocBuilder<LoginBlocBloc, LoginBlocState>(
